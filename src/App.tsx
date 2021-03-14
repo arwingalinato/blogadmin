@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { GlobalStyle } from './globalStyle';
@@ -13,8 +13,10 @@ export default function App() {
     <>
       <Router basename="/">
         <Layout flex>
-          <Sidebar routes={routes} />
-          <Main routes={routes} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Sidebar routes={routes} />
+            <Main routes={routes} />
+          </Suspense>
         </Layout>
       </Router>
       <GlobalStyle />
